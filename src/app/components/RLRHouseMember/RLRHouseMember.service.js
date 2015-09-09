@@ -12,12 +12,16 @@
     {name: 'Guy'},
     {name: 'Kyle'},
     {name: 'Matt'},
-    {name: 'Calvin'}
-    ];
+    {name: 'Calvin'}];
 
-    var factory = {};
-    factory.getHouseMembers = function () {
-      return houseMembers;
+    var factory = {
+      getHouseMembers: getHouseMembers
     };
+
     return factory;
-  }})();
+    
+    function getHouseMembers() {
+      return houseMembers;   
+  }
+}
+})();
