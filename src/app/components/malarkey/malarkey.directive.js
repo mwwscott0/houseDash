@@ -58,7 +58,7 @@
       function activate() {
         vm.contributors = RLRHouseMember.getHouseMembers();
         return vm.contributors;
-        };
+        }
       }
   }
 
