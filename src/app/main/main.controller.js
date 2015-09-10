@@ -2,22 +2,24 @@
   'use strict';
 
   angular
-    .module('houseDash')
-    .controller('MainController', MainController);
+  .module('houseDash')
+  .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($timeout, webDevTec, toastr, weather) {
     var vm = this;
 
     vm.awesomeThings = [];
+    vm.weather = [];
     vm.classAnimation = '';
     vm.creationDate = 1441739700584;
     vm.showToastr = showToastr;
+    vm.test = 'test';
 
     activate();
-
     function activate() {
       getWebDevTec();
+      getWeather();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
@@ -34,6 +36,13 @@
       angular.forEach(vm.awesomeThings, function(awesomeThing) {
         awesomeThing.rank = Math.random();
       });
+    }
+
+    function getWeather() {
+      weather.getWeather().then(function(response) {
+        vm.weather = response;
+      }
+      );
     }
   }
 })();
