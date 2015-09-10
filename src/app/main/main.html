@@ -9,17 +9,18 @@
       <h1>Dashboard</h1>
       <md-button class="md-raised animated" ng-class="main.classAnimation" ng-click="main.showToastr()">Splendid Toastr</md-button>
       <p>
-        Statistcs tuned specifically for the lair of<acme-malarkey values="['Yeoman', 'Gulp', 'Angular']" />
+        Statistcs tuned specifically for the 
+         of<acme-malarkey values="['Yeoman', 'Gulp', 'Angular']" />
       </p>
     </section>
 
     <div class="techs" layout-align="center">
-      <md-card ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
+      <md-card>
         <div class="thumbnail">
-          <img class="pull-right" ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}">
+          <img class="pull-right" ng-src="assets/images/weather/sunshine.svg">
           <div class="caption">
-            <h3>{{ awesomeThing.title }}</h3>
-            <p>{{ awesomeThing.description }}</p>
+            <h3>{{ main.weather.name }}</h3>
+            <p>{{ main.weather.main.temp}}°</p>
             <p><a ng-href="{{ awesomeThing.url }}">{{ awesomeThing.url }}</a></p>
           </div>
         </div>
