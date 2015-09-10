@@ -2,12 +2,12 @@
 'use strict';
 
 angular
-.module('houseDash')
-.factory('weather', weather);
+  .module('houseDash')
+  .service('weather', weather);
 
   /** @ngInject */
-  function weather($http) {
-    var apiHost = 'https://api.openweathermap.org/data/2.5/weather?zip=94040,us';
+  function weather($log, $http) {
+    var apiHost = 'http://api.openweathermap.org/data/2.5/weather?zip=93405,us&units=imperial&APPID=41fcd0cb3757de499ba9d0b1d28aa108';
 
     var service = {
       apiHost: apiHost,
@@ -16,8 +16,7 @@ angular
 
     return service;
 
-    function getWeather {
-
+    function getWeather() {
       return $http.get(apiHost)
         .then(getWeatherComplete)
         .catch(getWeatherFailed);
