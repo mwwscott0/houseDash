@@ -38,7 +38,7 @@
 
       watcher = scope.$watch('vm.contributors', function() {
         angular.forEach(vm.contributors, function(contributor) {
-          typist.type(contributor.login).pause().delete();
+          typist.type(contributor.name).pause().delete();
         });
       });
 
@@ -48,28 +48,18 @@
     }
 
     /** @ngInject */
-    function MalarkeyController($log, githubContributor) {
+    function MalarkeyController($log, RLRHouseMember) {
       var vm = this;
 
       vm.contributors = [];
-
+      
       activate();
-
+      
       function activate() {
-        return getContributors().then(function() {
-          $log.info('Activated Contributors View');
-        });
+        vm.contributors = RLRHouseMember.getHouseMembers();
+        return vm.contributors;
+        }
       }
-
-      function getContributors() {
-        return githubContributor.getContributors(10).then(function(data) {
-          vm.contributors = data;
-
-          return vm.contributors;
-        });
-      }
-    }
-
   }
 
 })();
