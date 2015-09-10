@@ -3,7 +3,11 @@ House Dashboard for Sensing Temperature, Milk Levels, and 'Liquid Asshole' level
 
 ## install dependencies:
 `npm install `
+
+
 `npm install -g bower gulp`
+
+
 `bower install` 
 
 ## preview app
