@@ -9,18 +9,18 @@
     <h1>Dashboard</h1>
     <md-button class="md-raised animated" ng-class="main.classAnimation" ng-click="main.showToastr()">Splendid Toastr</md-button>
     <p>
-      Statistcs tuned specifically for the 
-      of<acme-malarkey values="['Yeoman', 'Gulp', 'Angular']" />
+      Statistcs tuned specifically for the ???? of<acme-malarkey/>
     </p>
   </section>
 
-  <div class="techs" layout-align="center">
+  <div class="techs" layout-align="center" flex="20">
     <md-card id="weather">
     <div class="thumbnail">
       <img class="pull-right" ng-src="assets/images/weather/sunshine.svg">
       <div class="caption">
         <h3>{{ main.weather.name }}</h3>
         <p>{{ main.weather.main.temp}}°</p>
+        <a href=/#/#>more</a>
       </div>
     </div>
   </md-card>
@@ -29,9 +29,9 @@
   <div class="thumbnail">
     <img class="pull-right" ngsrc="http://placehold.it/100x100">
     <div class="caption">
-      <h3> Lorem Ipsum</h3>
-      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h3> Milk Level</h3>
+      <p>{{ main.milkLevel }}</p>
+      <button ng-click="main.milkLevel = main.milkLevel - 10">–</button> <button ng-click = "main.milkLevel = main.milkLevel + 10">  +  </button>
       </div>
     </div>
   </md-card>
@@ -75,8 +75,6 @@
       </div>
     </div>
   </md-card>
-   <md-card>
- 
 
 
 </div>

@@ -6,7 +6,7 @@
   .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, weather) {
+  function MainController($timeout, webDevTec, toastr, weather, milkLevel) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -15,11 +15,13 @@
     vm.creationDate = 1441739700584;
     vm.showToastr = showToastr;
     vm.test = 'test';
+    vm.milkLevel = 0;
 
     activate();
     function activate() {
       getWebDevTec();
       getWeather();
+      getMilkLevel();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
@@ -44,5 +46,16 @@
       }
       );
     }
+
+    function getMilkLevel() {
+      vm.milkLevel =  milkLevel.getMilkLevel();
+    }
+
+    function incrementMilkLevel() {
+      vm.milkLevel = vm.milkLevel + 10;
+            console.log("increment is called");
+
+    }
+
   }
 })();
