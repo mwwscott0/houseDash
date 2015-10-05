@@ -51,11 +51,4 @@
       vm.milkLevel =  milkLevel.getMilkLevel();
     }
 
-    function incrementMilkLevel() {
-      vm.milkLevel = vm.milkLevel + 10;
-            console.log("increment is called");
-
-    }
-
-  }
 })();
