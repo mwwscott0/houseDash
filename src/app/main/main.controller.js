@@ -51,4 +51,4 @@
       vm.milkLevel =  milkLevel.getMilkLevel();
     }
 
-})();
+}})();
