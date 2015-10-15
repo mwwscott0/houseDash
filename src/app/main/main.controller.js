@@ -50,10 +50,7 @@
     }
 
     function getTweets() {
-      twitterFeed.getTweets().then(function(response) {
-        vm.tweets = response;
-      }
-      );
+        vm.tweets = twitterFeed.getTweets;
     }
 
     function getMilkLevel() {

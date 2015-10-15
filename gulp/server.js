@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var cors = require('cors');
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
@@ -22,8 +23,14 @@ function browserSyncInit(baseDir, browser) {
   }
 
   var server = {
+    middleware: function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+      },
     baseDir: baseDir,
-    routes: routes
+    routes: routes,
   };
 
   /*
@@ -34,12 +41,13 @@ function browserSyncInit(baseDir, browser) {
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
-
-  browserSync.instance = browserSync.init({
+  console.log(server.middleware);
+    browserSync.instance = browserSync.init({
     startPath: '/',
     server: server,
     browser: browser
   });
+
 }
 
 browserSync.use(browserSyncSpa({
