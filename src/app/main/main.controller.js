@@ -6,7 +6,7 @@
   .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, weather, milkLevel) {
+  function MainController($timeout, webDevTec, toastr, weather, milkLevel, twitterFeed) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -16,12 +16,14 @@
     vm.showToastr = showToastr;
     vm.test = 'test';
     vm.milkLevel = 0;
+    vm.tweets = [];
 
     activate();
     function activate() {
       getWebDevTec();
       getWeather();
       getMilkLevel();
+      getTweets();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
@@ -43,6 +45,13 @@
     function getWeather() {
       weather.getWeather().then(function(response) {
         vm.weather = response;
+      }
+      );
+    }
+
+    function getTweets() {
+      twitterFeed.getTweets().then(function(response) {
+        vm.tweets = response;
       }
       );
     }
