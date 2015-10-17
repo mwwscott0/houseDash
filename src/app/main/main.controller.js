@@ -15,7 +15,7 @@
     vm.creationDate = 1441739700584;
     vm.showToastr = showToastr;
     vm.test = 'test';
-    vm.milkLevel = [];
+    vm.milkLevel = 9999999;
 
     activate();
     function activate() {
@@ -30,7 +30,7 @@
     function getMilkLevel(){
       milkLevel.getMilkLevel().then(function(response){
         if (response !== 'NaN' && vm.milkLevel !== response.data){
-          vm.milkLevel =  response.data;
+          vm.milkLevel =  parseInt(response.data);
         }
       },
       function(error){
@@ -61,7 +61,6 @@
     $scope.increaseMilkLevel = function(){
       vm.milkLevel = vm.milkLevel + 10;
       $log.debug('VM MILKLEVEL: ' + vm.milkLevel);
-      $log.debug('service MILKLEVEL: ' + milkLevel.currentMilkLevel);
       milkLevel.postMilkLevel(vm.milkLevel);
     };
 
