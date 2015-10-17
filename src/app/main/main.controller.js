@@ -6,7 +6,7 @@
   .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, weather, milkLevel) {
+  function MainController($scope, $log, $timeout, webDevTec, toastr, weather, milkLevel) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -15,7 +15,7 @@
     vm.creationDate = 1441739700584;
     vm.showToastr = showToastr;
     vm.test = 'test';
-    vm.milkLevel = 0;
+    vm.milkLevel = [];
 
     activate();
     function activate() {
@@ -25,6 +25,17 @@
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
+    }
+
+    function getMilkLevel(){
+      milkLevel.getMilkLevel().then(function(response){
+        if (response !== 'NaN' && vm.milkLevel !== response.data){
+          vm.milkLevel =  response.data;
+        }
+      },
+      function(error){
+        $log.error(error);
+      });
     }
 
     function showToastr() {
@@ -47,8 +58,19 @@
       );
     }
 
-    function getMilkLevel() {
-      vm.milkLevel =  milkLevel.getMilkLevel();
-    }
+    $scope.increaseMilkLevel = function(){
+      vm.milkLevel = vm.milkLevel + 10;
+      $log.debug('VM MILKLEVEL: ' + vm.milkLevel);
+      $log.debug('service MILKLEVEL: ' + milkLevel.currentMilkLevel);
+      milkLevel.postMilkLevel(vm.milkLevel);
+    };
+
+    $scope.decreaseMilkLevel = function(){
+      vm.milkLevel = vm.milkLevel - 10;
+      milkLevel.postMilkLevel(vm.milkLevel);
+    };
+    $scope.$watch(milkLevel.currentMilkLevel, function(){
+      $log.warn('updated milkLevel to ' + milkLevel.currentMilkLevel);
+    });
 
 }})();

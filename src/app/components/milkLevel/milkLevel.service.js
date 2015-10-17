@@ -1,22 +1,33 @@
 (function() {
-'use strict';
+  'use strict';
 
-angular
+  angular
   .module('houseDash')
   .service('milkLevel', milkLevel);
 
   /** @ngInject */
-  function milkLevel() {
-    var currentMilkLevel = 100;
+  function milkLevel($http, $log) {
 
     var service = {
-      getMilkLevel: getMilkLevel
+      getMilkLevel: getMilkLevel,
+      postMilkLevel: postMilkLevel
     };
 
     return service;
+    
+    function postMilkLevel(newLevel) {
+      $http.post('http://192.168.0.1:8080/api/1/milk', newLevel).then(
+        function(){
+          //success!
+        },
+        function(error){
+          $log.error(error);
+        });
+    }
 
     function getMilkLevel() {
-     return currentMilkLevel;
+      return $http.get('http://192.168.0.1:8080/api/1/milk');
     }
   }
+
 })();
