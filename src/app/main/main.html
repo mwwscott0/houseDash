@@ -31,7 +31,10 @@
     <div class="caption">
       <h3> Milk Level</h3>
       <p>{{ main.milkLevel }}</p>
-      <button ng-click='decreaseMilkLevel()'>–</button> <button ng-click ='increaseMilkLevel()'>  +  </button> 
+      <button ng-click='decreaseMilkLevel(100)'>-100</button>
+      <button ng-click='decreaseMilkLevel(10)'>-10</button> 
+      <button ng-click ='increaseMilkLevel(10)'>+10</button>
+      <button ng-click ='increaseMilkLevel(100)'>+100</button> 
       </div>
     </div>
   </md-card>
